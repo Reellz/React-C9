@@ -1,6 +1,6 @@
 import { WiDaySunny, WiCloud, WiRain, WiSnow, WiThunderstorm } from "react-icons/wi";
 
-function WeatherCard({ city, temperature, condition }) {
+function WeatherCard(props) {
   // Pick icon based on condition
   const getWeatherIcon = (cond) => {
     const lower = cond.toLowerCase();
@@ -15,16 +15,16 @@ function WeatherCard({ city, temperature, condition }) {
   return (
     <div className="max-w-xs w-full bg-white shadow-lg rounded-xl p-6 flex flex-col items-center text-center space-y-4 transition hover:scale-105 hover:shadow-xl">
       {/* City */}
-      <h1 className="text-xl font-semibold text-gray-800">{city}</h1>
+      <h1 className="text-xl font-semibold text-gray-800">{props.city}</h1>
 
       {/* Icon */}
-      {getWeatherIcon(condition)}
+      {getWeatherIcon(props.condition)}
 
       {/* Temperature */}
-      <h2 className="text-4xl font-bold text-blue-600">{temperature}°C</h2>
+      <h2 className="text-4xl font-bold text-blue-600">{props.temperature}°C</h2>
 
       {/* Condition */}
-      <h3 className="text-lg text-gray-600 capitalize">{condition}</h3>
+      <h3 className="text-lg text-gray-600 capitalize">{props.condition}</h3>
     </div>
   );
 }
