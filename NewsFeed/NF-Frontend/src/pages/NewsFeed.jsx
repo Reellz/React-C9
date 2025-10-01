@@ -14,7 +14,7 @@ function NewsFeed() {
       setLoading(true);
       setError(null);
       try {
-        let url = `http://localhost:1337/api/posts?_page=${currentPage}`;
+        let url = `https://newsfeed-strapi-1.onrender.com/api/posts?_page=${currentPage}`;
         if (searchQuery) {
           url += `&_q=${encodeURIComponent(searchQuery)}`;
         }

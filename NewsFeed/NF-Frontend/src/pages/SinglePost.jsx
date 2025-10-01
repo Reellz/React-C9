@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { fetchPostById } from "../api/api"; // Your api.js
+import { fetchPostById } from "../api/api"; 
 
 function SinglePost() {
-  const { id } = useParams(); // get post ID from URL
+  const { id } = useParams(); 
   const [post, setPost] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);

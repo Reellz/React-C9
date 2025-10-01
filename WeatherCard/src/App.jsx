@@ -1,11 +1,10 @@
-// App.jsx
 import { useEffect, useState } from "react";
 import WeatherCard from "./components/WeatherCard";
 
 function App() {
   const apiKey = import.meta.env.VITE_WEATHER_API_KEY;
   const [weatherData, setWeatherData] = useState([]);
-  const cities = ["New York", "London", "Tokyo", "Nairobi"];
+  const cities = ["New York", "London", "Tokyo", "Nairobi", "Kampala", "Paris"];
 
   async function fetchWeather(city) {
     try {

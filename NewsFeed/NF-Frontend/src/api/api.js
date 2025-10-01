@@ -1,7 +1,7 @@
 export async function fetchPosts(page, query) {
   try {
     const response = await fetch(
-      `http://localhost:1337/api/posts?_p=${page}&_q=${query}`
+      `https://newsfeed-strapi-1.onrender.com/api/posts?_p=${page}&_q=${query}`
     );
     if (response.status !== 200) {
       throw new Error("Failed to fetch posts");
@@ -16,7 +16,7 @@ export async function fetchPosts(page, query) {
 
 export async function fetchPostById(id) {
   try {
-    const response = await fetch(`http://localhost:1337/api/posts/${id}`);
+    const response = await fetch(`https://newsfeed-strapi-1.onrender.com/api/posts/${id}`);
     if (response.status !== 200) {
       throw new Error("Failed to fetch post");
     }
