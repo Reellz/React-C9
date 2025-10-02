@@ -1,11 +1,20 @@
 import { Card, Text, Badge, Button, Group } from '@mantine/core';
 import { useNavigate } from 'react-router-dom';
 
-function NewsCard({ id, title, author, content, excerpt, category }) {
+function NewsCard({ id, title, author, content, excerpt, category, coverImage }) {
   const navigate = useNavigate();
 
   return (
     <Card shadow="sm" padding="lg" radius="md" withBorder>
+      {coverImage && (
+        <Card.Section>
+          <Image
+            src={coverImage}
+            height={160}
+            alt={title}
+          />
+        </Card.Section>
+      )}
       {/* Title */}
       <Group justify="space-between" mt="md" mb="xs">
         <Text fw={700} size="xl" lineClamp={2}>

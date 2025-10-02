@@ -7,7 +7,6 @@ import { MantineProvider } from "@mantine/core";
 import '@mantine/core/styles.css'
 import { BrowserRouter } from "react-router-dom";
 
-// Import your Publishable Key
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
 
 if (!PUBLISHABLE_KEY) {

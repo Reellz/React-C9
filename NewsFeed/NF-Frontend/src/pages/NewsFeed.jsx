@@ -22,10 +22,10 @@ function NewsFeed() {
         if (!response.ok) throw new Error(`Error: ${response.statusText}`);
         const data = await response.json();
 
-        // Map Strapi response to match NewsCard props
         const formattedPosts = data.data.map((post) => ({
           id: post.id,
           title: post.Title,
+          coverImage: post.Image,
           author: post.Author,
           content: post.content,
           excerpt: post.Excerpt,
@@ -80,6 +80,7 @@ function NewsFeed() {
             <NewsCard
               key={post.id}
               id={post.id}
+              coverImage={post.coverImage}
               title={post.title}
               author={post.author}
               content={post.content}
