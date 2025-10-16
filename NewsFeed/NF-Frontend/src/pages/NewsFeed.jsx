@@ -57,8 +57,33 @@ function NewsFeed() {
     setCurrentPage((prev) => Math.min(prev + 1, totalPages));
   };
 
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>{error.message}</div>;
+  if (loading)
+    return (
+      <div className="flex items-center justify-center h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black">
+        <div className="flex flex-col items-center space-y-4">
+          {/* Spinning loader */}
+          <div className="w-12 h-12 border-4 border-t-transparent border-indigo-500 rounded-full animate-spin"></div>
+
+          {/* Animated loading text */}
+          <p className="text-indigo-400 text-lg font-semibold animate-pulse">
+            Loading...
+          </p>
+        </div>
+      </div>
+    );
+
+  if (error)
+    return (
+      <div className="flex items-center justify-center h-screen bg-gradient-to-br from-red-900 via-red-800 to-black">
+        <div className="text-center">
+          {/* Error icon (animated shake) */}
+          <div className="text-5xl mb-4 animate-bounce">⚠️</div>
+          <p className="text-red-300 text-xl font-semibold animate-fadeIn">
+            {error.message}
+          </p>
+        </div>
+      </div>
+    );
 
   return (
     <div className="container mx-auto p-4">
