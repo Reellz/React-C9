@@ -1,18 +1,22 @@
-import { Card, Text, Badge, Button, Group } from '@mantine/core';
-import { useNavigate } from 'react-router-dom';
+import { Card, Text, Badge, Button, Group, Image } from "@mantine/core";
+import { useNavigate } from "react-router-dom";
 
-function NewsCard({ id, title, author, content, excerpt, category, coverImage }) {
+function NewsCard({
+  id,
+  title,
+  author,
+  content,
+  excerpt,
+  category,
+  coverImage,
+}) {
   const navigate = useNavigate();
 
   return (
     <Card shadow="sm" padding="lg" radius="md" withBorder>
       {coverImage && (
         <Card.Section>
-          <Image
-            src={coverImage}
-            height={160}
-            alt={title}
-          />
+          <Image src={coverImage} height={160} alt={title} />
         </Card.Section>
       )}
       {/* Title */}
@@ -38,8 +42,8 @@ function NewsCard({ id, title, author, content, excerpt, category, coverImage })
       </Text>
 
       <Text size="sm" c="dimmed" lineClamp={5}>
-        {content}
-      </Text> 
+        {typeof content === "string" ? content : JSON.stringify(content)}
+      </Text>
 
       {/* Read More Button */}
       <Button
@@ -47,7 +51,7 @@ function NewsCard({ id, title, author, content, excerpt, category, coverImage })
         fullWidth
         mt="md"
         radius="md"
-        onClick={() => navigate(`/news/:${id}`)}
+        onClick={() => navigate(`/news/${id}`)}
       >
         Read More
       </Button>

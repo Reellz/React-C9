@@ -13,21 +13,25 @@ function NewsFeed() {
     const fetchPosts = async () => {
       setLoading(true);
       setError(null);
+
       try {
-        let url = `https://newsfeed-strapi-1.onrender.com/api/posts?_page=${currentPage}`;
+        let url = `https://newsfeed-strapi-1.onrender.com/api/posts?pagination[page]=${currentPage}&pagination[pageSize]=10&populate=*`;
         if (searchQuery) {
-          url += `&_q=${encodeURIComponent(searchQuery)}`;
+          url += `&filters[Title][$containsi]=${encodeURIComponent(
+            searchQuery
+          )}`;
         }
+
         const response = await fetch(url);
         if (!response.ok) throw new Error(`Error: ${response.statusText}`);
         const data = await response.json();
 
         const formattedPosts = data.data.map((post) => ({
-          id: post.id,
+          id: post.documentId,
           title: post.Title,
-          coverImage: post.Image,
+          coverImage: post.Image?.formats?.small?.url || post.Image?.url || null,
           author: post.Author,
-          content: post.content,
+          content: post.Content,
           excerpt: post.Excerpt,
           category: post.Category,
         }));
@@ -35,7 +39,7 @@ function NewsFeed() {
         setPosts(formattedPosts);
         setTotalPages(data.meta?.pagination?.pageCount || 1);
       } catch (err) {
-        setError(err);
+        setError(err.message);
       } finally {
         setLoading(false);
       }
@@ -108,7 +112,6 @@ function NewsFeed() {
               coverImage={post.coverImage}
               title={post.title}
               author={post.author}
-              content={post.content}
               excerpt={post.excerpt}
               category={post.category}
             />
